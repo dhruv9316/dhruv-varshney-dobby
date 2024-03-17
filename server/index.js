@@ -47,4 +47,4 @@ app.listen(PORT, () => {
 	console.log(`Your server is running at ${PORT}`)
 })
  
-export default app
+module.exports = app
