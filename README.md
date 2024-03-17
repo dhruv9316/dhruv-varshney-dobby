@@ -12,6 +12,8 @@ STEPS TO RUN THIS APPLICATION ON YOUR LOCAL MACHINE
 
 5. Run the following command to install the project dependencies: 'npm install' for both root and server directory.
 
-6. Once the dependencies are installed, you can run the application by executing: 'npm start'
+6. Once the dependencies are installed, make a '.env' file and add all the needed environment variables as shown in '.env.example' file.
 
-7. Your application should now be running locally automatically, if not, then open a web browser and go to http://localhost:3000 to view it.
+7. Finally, you can run the application by executing: 'npm run dev'
+
+8. Your application should now be running locally automatically, if not, then open a web browser and go to http://localhost:3000 to view it.
