@@ -31,7 +31,7 @@ app.use(
 	})
 )
 
-connectToCloudinary(); 
+// connectToCloudinary(); 
 
 //mounting... routes
 app.use("/api/v1", userRoutes);
