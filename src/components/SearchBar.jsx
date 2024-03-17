@@ -20,7 +20,7 @@ export default function SearchBar({searchQuery, setSearchQuery}) {
                             name='search_query'
                             value={searchQuery}
                             onChange={onSearchHandler}
-                            placeholder='Search by name of Image'
+                            placeholder='Search Image by its name'
                         />
                     </div>
                 </div>
