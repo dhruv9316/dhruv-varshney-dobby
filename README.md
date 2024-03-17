@@ -1,31 +1,17 @@
-# React & Tailwind CSS Starter Pack
+DEPLOYED LINK - 
 
-This is a starter pack for creating React projects with Tailwind CSS configured. It uses React version **18.2** and Tailwind CSS version **3.2**.
+STEPS TO RUN THIS APPLICATION ON YOUR LOCAL MACHINE
 
-## Usage
+1. Open your terminal.
 
-This starter pack includes a basic setup for using **Tailwind CSS with React**. To start building your own components and styles, follow these steps:
+2. Navigate to the directory where you want to clone the repository.
 
-1. Clone the repository to your local machine.
-    ```sh
-    git clone https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git
-    ```
+3. Run the following command to clone the repository: 'git clone https://github.com/dhruv9316/dhruv-varshney-dobby.git'
 
-1. Install the required packages.
-    ```sh
-    cd react-tailwind-css-starter-pack
-    npm install
-    ```
+4. Navigate into the cloned repository directory: 'cd your_directory_name'
 
-1. Start the development server.
-    ```sh
-    npm start
-    ```
-1. Open the project in your browser at [`http://localhost:3000`](http://localhost:3000) to view your project.
-1. Create your React components and add your styles using Tailwind classes. You can also create new CSS files and import them into your components.
+5. Run the following command to install the project dependencies: 'npm install' for both root and server directory.
 
-The project is set up to use `postcss-cli` to process your CSS files. You can add your own `tailwind.config.js` file to customize your Tailwind setup.
+6. Once the dependencies are installed, you can run the application by executing: 'npm start'
 
-## Contributing
-
-Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
+7. Your application should now be running locally automatically, if not, then open a web browser and go to http://localhost:3000 to view it.

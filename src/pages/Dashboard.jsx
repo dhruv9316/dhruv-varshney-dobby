@@ -1,112 +1,98 @@
-import React from 'react'
-import { toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import ImagesGrid from "../components/ImagesGrid";
+import axios from "axios";
+import UploadImage from "../components/UploadImage";
+import SearchBar from "../components/SearchBar";
 
-import { setToken, setUser } from '../slices/authSlice';
 const Dashboard = () => {
-    const { user } = useSelector((state) => state.auth)
+  const navigate = useNavigate();
 
-    const { firstName, lastName, phoneNumber, email, photo, pastExperience, skillSet, 
-        educationalQualification } = user;
+  const [images, setImages] = useState([]);
+  const [filteredImages, setFilteredImages] = useState([]);
+  const [imageUploaded, setImageUploaded] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const fetchAllImgs = async () => {
+    const toastId = toast.loading("Loading...");
 
-    const logout = (navigate) => {
-        return (dispatch) => {
-            dispatch(setToken(null))
-            dispatch(setUser(null))
+    try {
+      const token = JSON.parse(
+        localStorage.getItem("token") || JSON.stringify({})
+      );
 
-            localStorage.removeItem("token")
-            localStorage.removeItem("user")
+      const response = await axios.get(`${BASE_URL}/fetch-all-images`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-            toast.success("Logged Out")
+      console.log("fetchAllImgs API RESPONSE............", response);
 
-            navigate("/")
-        }
+      if (!response.data.success) {
+        toast.error(response.data.message);
+      } else {
+        setImages(response.data.data.uploaded_images);
+        setFilteredImages(response.data.data.uploaded_images);
+      }
+    } catch (error) {
+      console.log("fetchAllImgs API ERROR............", error);
+      toast.error(error.response.data.message);
     }
 
+    toast.dismiss(toastId);
+  };
+
+  useEffect(() => {
+    fetchAllImgs();
+  }, []);
+
+  useEffect(() => {
+    fetchAllImgs();
+    setImageUploaded(null);
+  }, [imageUploaded]);
+
+  useEffect(() => {
+    const searchQueryHandler = () => {
+      const filteredImagesData = images.filter((image) =>
+        image.img_name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+      setFilteredImages(filteredImagesData);
+    };
+    searchQueryHandler();
+  }, [searchQuery]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    toast.success("Logged Out");
+
+    navigate("/");
+  };
+
   return (
-    <div className='flex flex-col ml-10 my-auto gap-6'>
-        <p className='text-center font-extrabold text-4xl '>DASHBOARD</p>
-        <div className='flex  gap-4 items-center'>
-            <h2>
-                Profile Photo :
-            </h2>
-            <img src={photo}
-                className='w-[50px] aspect-square rounded-full'
-            />
-        </div>
+    <div className="flex flex-col ml-10 mt-2 gap-6">
+      <div className="flex w-[100%] justify-between">
+        <p className="text-center font-extrabold text-4xl ">My Collection</p>
+        <button
+          className="px-4 py-2 border-2 border-black mr-5"
+          onClick={logout}
+        >
+          Logout
+        </button>
+      </div>
 
-        <div className='flex  gap-4' >
-            <h2>
-                Name :
-                
-            </h2>
-            <p>{`${firstName} ${lastName}`}</p>
-        </div>
+      {images.length > 0 && (
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      )}
 
-        <div className='flex  gap-4' >
-            <h2>
-                Phone Number :
-                
-            </h2>
-            <p>{phoneNumber}</p>
-        </div>
+      <ImagesGrid filteredImages={filteredImages} images={images} />
 
-        <div className='flex  gap-4' >
-            <h2>
-                Email :
-                
-            </h2>
-            <p>{email}</p>
-        </div>
-
-        <div className='flex  gap-4' >
-            <h2>
-                Past Experience :
-                
-            </h2>
-            <p>{`${pastExperience ? pastExperience :
-                     " (You do not specified your past experience yet)"  }`}</p>
-        </div>
-
-        <div className='flex  gap-4' >
-            <h2>
-                Skill Set :
-                
-            </h2>
-            <p>{`${skillSet ? skillSet :
-                     " (You do not specified your skill set yet)"  }`}</p>
-        </div>
-
-        <div className='flex  gap-4' >
-            <h2>
-                Educational Qualification :
-                
-            </h2>
-            <p>{`${educationalQualification ? educationalQualification :
-                     " (You do not specified your Educational Qualification yet)"  }`}</p>
-        </div>
-
-        <Link to={"/updateDetails"}>
-            <button className='px-4 py-2 border-2 border-black'>
-                Edit Profile
-            </button>
-        </Link>
-
-        <div>
-            <button className='px-4 py-2 border-2 border-black'
-                onClick={() => {dispatch(logout(navigate)) } }>
-                Logout
-            </button>
-        </div>
-
-
-
+      <UploadImage setImageUploaded={setImageUploaded} />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

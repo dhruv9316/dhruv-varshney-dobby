@@ -1,0 +1,126 @@
+.main_div{
+    width: 100%;
+    /* margin-top: 4rem; */
+    border-radius: 10px;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-right: 5rem;
+    margin: 0 auto;
+}
+
+.search_div{
+    height: 3rem;
+    display: flex;
+    gap: 8px;
+    padding: 4px 8px;
+    /* background-color: #EFF5FF; */
+    border-radius: 10px;
+    width: 100%;
+}
+
+.search_btn{
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.query_div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.query_div > input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #74787c;
+    font-size: 1.8rem;
+}
+.query_div > input:focus{
+    outline: none;
+}
+.query_div > input::placeholder{
+    color: #74787c;
+    font-size: 1.8rem;
+}
+.query_div > input::-webkit-input-placeholder {
+    color: #74787c;
+    font-size: 1.8rem;
+}
+
+.query_div > input::-moz-placeholder {
+    color: #74787c;
+    font-size: 1.8rem;
+}
+.query_div > input:-ms-input-placeholder{
+    color: #74787c;
+    font-size: 1.8rem;
+}
+
+@media (max-width: 767px) {
+    .search_div{
+        height: 2rem;
+        /* display: flex; */
+        gap: 8px;
+        padding: 4px 8px;
+        border-radius: 10px;
+        /* width: 100%; */
+    }
+    
+    .query_div > input{
+        /* width: 100%;
+        background: transparent;
+        border: none;
+        color: #74787c; */
+        font-size: 1.3rem;
+    }
+    .query_div > input::placeholder{
+        font-size: 1.3rem;
+    }
+    .query_div > input::-webkit-input-placeholder {
+        font-size: 1.3rem;
+    }
+
+    .query_div > input::-moz-placeholder {
+        font-size: 1.3rem;
+    }
+    .query_div > input:-ms-input-placeholder{
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .search_div{
+        /* height: 2rem; */
+        /* display: flex; */
+        gap: 0px;
+        padding: 2px 4px;
+        border-radius: 10px;
+    }
+    
+    .search_btn{
+        /* font-size: 7rem; */
+        width: 1.9rem
+    }
+    
+    .query_div > input{
+        font-size: 1rem;
+    }
+    .query_div > input::placeholder{
+        font-size: 1rem;
+    }
+    .query_div > input::-webkit-input-placeholder {
+        font-size: 1rem;
+    }
+    .query_div > input::-moz-placeholder {
+        font-size: 1rem;
+    }
+    .query_div > input:-ms-input-placeholder{
+        font-size: 1rem;
+    }
+}

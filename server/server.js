@@ -4,7 +4,6 @@ const app = express();
 const userRoutes = require("./routes/userRoute");
 
 const database = require("./config/database");
-const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const {connectToCloudinary } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
@@ -17,7 +16,6 @@ database.connect();
 
 //middlewares
 app.use(express.json());
-app.use(cookieParser());
 
 app.use(
 	cors({
@@ -37,13 +35,6 @@ connectToCloudinary();
 
 //mounting... routes
 app.use("/api/v1", userRoutes);
-// app.post("/api/v1/sendotp", sendotp)
-// app.put("/api/v1/updateProfile",authentication, updateProfile)
-// app.put("/api/v1/updateDisplayPicture",authentication, updateDisplayPicture)
-
-// app.post("/api/v1/login", login)
-// app.post("/api/v1/signup", signup)
- 
  
 app.get("/", (req, res) => {
 	return res.json({

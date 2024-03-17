@@ -4,8 +4,7 @@ const User = require("../models/User");
 
 exports.authentication = async(req, res, next) => {
     try{
-        const token = req.body.token || req.cookies.token ||
-                                     req.header("Authorization").replace("Bearer ", "");
+        const token = req.body.token || req.header("Authorization").replace("Bearer ", "");
 
         if(!token) {
             return res.status(401).json({
@@ -22,7 +21,7 @@ exports.authentication = async(req, res, next) => {
         } catch (error) {
             return res.status(401).json({
                 success:false,
-                message:'there is an isssue in validation of TOKEN..',
+                message:'Invalid TOKEN..',
             });
         }
         next();
