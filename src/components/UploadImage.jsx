@@ -138,7 +138,7 @@ export default function UploadImage({setImageUploaded}) {
                   </div>
                 }
 
-                <button onClick={uploadImageHandler} className="font-semibold ">UPLOAD</button>
+                <button onClick={uploadImageHandler} className="font-semibold text-white bg-black rounded-md p-2 hover:scale-[103%] transition-all ease-in">UPLOAD</button>
 
                 {/* <label htmlFor="image" className="cursor-pointer">Upload Image</label> */}
               </div>
